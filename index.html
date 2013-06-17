@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ES">
-  <head>
+	<head>
 		<meta charset="utf-8" />
 		<meta name="author" content="Carlos" />		
 		<title>Plugins jQuery - TPI</title>		
@@ -35,7 +35,7 @@
 			<h2>Descripcion:</h2>
 			<p>go_top.js es un plugin sencillo, su función consiste en mostrar un botón para regresar al inicio de la pagina,
 				este se muestra cuando el usuario ha hecho escroll cierta distancia vertical al incio de la página.<br><br>
-				<a href="go_top.rar" class="btn">Descargar plugin</a>
+				<a href="go_top.rar" class="btn">Descargar go_top.js</a>
 			</p>			
 			<h2>Como usarlo:</h2>
 			<p>Llamar la libreria jQuery, luego al script go_top.js dentro del head o antes de cerrar la etiqueta body, asi:</p>
@@ -72,7 +72,7 @@
 			</div>
 			
 			<h2>Parametros:</h2>
-			<p>La llamada al plugin se hace con "$('elemento').go_top()", la forma más simple de usarlo es sin parametros, pero
+			<p>La llamada al plugin se hace con "$('selector').go_top()", la forma más simple de usarlo es sin parametros, pero
 				la función admite parametros opcionales los cuales son:
 				<ul>
 					<li>
@@ -108,7 +108,7 @@
 				</pre>				
 			</div>
 			
-			<h2>Codigo fuente del plugin:</h2>			
+			<h2>Código fuente del plugin:</h2>			
 			<div class="code">
 				<pre name="code" class="js">
 					jQuery.fn.go_top = function(params){
@@ -162,10 +162,10 @@
 						});
 			
 						// Animar el scroll hacia arriba
-						go_top.click(function(event) {
+						return go_top.click(function(event) {
 							event.preventDefault();				
 							$('html, body').animate({scrollTop: 0}, options.duration);
-						})
+						});
 					};	
 									
 				</pre>				

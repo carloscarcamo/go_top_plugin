@@ -1,0 +1,87 @@
+body{
+	margin:0;
+	padding:0;
+	background:#238db6;					
+	text-align:justify;	
+}			
+header{
+	margin:0 0 1em 0;
+	padding:1em 0;
+	width:100%;	
+	background:#005177;
+}
+h1{
+	margin:0;
+	padding:0;
+}
+h1, h2, p, ul{
+	
+	text-shadow:-1px 1px 1px #fff;
+}	
+
+h1{
+	text-align:center;
+}	
+#contenido{
+	margin:0 auto;
+	width:80%;
+	
+	background:rgba(255,255,255,0.7);
+	border:1px solid #dbdbdb;
+	box-shadow:0px 5px 10px rgba(0,0,0, 0.5);
+}
+p{
+	margin:2em;
+	font-size:1.25em;
+}
+ul{
+	font-size:1.25em;
+	margin:2em;
+}
+h1{
+	color:#fff;
+	text-shadow:-1px 1px 1px #005782;
+}
+h2{				
+	padding:1em 0 0 2em;
+}
+.code{
+	margin:1em 0 0 3em;
+	width:70%;
+}	
+
+footer a{
+	color:#fff;
+}
+footer a:hover{
+	font-style: italic;
+}
+footer{	
+	width:100%;
+	margin-top:1em;
+	height:425px;
+	background:#005177;
+	color:#fff;
+	height:100px;
+	padding-top:1em;	
+}
+
+footer .copy{	
+	margin:0 auto;
+	width:50%;
+	text-align:center;
+}
+
+.btn{
+	text-decoration:none;
+	padding:10px;
+	text-align:center;
+	background:#0073aa;
+	border:1px solid #005177;
+	text-shadow:-1px 1px 1px #006291;
+	color:#fff;
+	box-shadow:inset 0px 0px 1px #fff, 0px 0px 10px #525252;	
+}
+.btn:hover{
+	background:#008bce;
+}
