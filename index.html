@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ES">
+  <head>
+		<meta charset="utf-8" />
+		<meta name="author" content="Carlos" />		
+		<title>Plugins jQuery - TPI</title>		
+		<link rel="stylesheet" type="text/css" href="css/styles.css" media="all"/>
+		<link rel="stylesheet" type="text/css" href="css/SyntaxHighlighter.css" media="all"/>			
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/shCore.js"></script>		
+		<script type="text/javascript" src="js/shBrushJScript.js"></script>
+		<script type="text/javascript" src="js/shBrushXml.js"></script>
+		<script type="text/javascript" src="js/go_top.js"></script>
+		<script type="text/javascript">
+			window.onload = function() {
+     	 		dp.SyntaxHighlighter.HighlightAll("code");
+    		};
+    	
+			$(document).ready(function(){
+				$("#goTop").go_top({
+					"top":200,
+					"in":200,
+					"out":200,
+					"duration":400
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<header>
+			<h1>jQuery Plugin - go_top.js</h1>
+		</header>
+		<div id="contenido">
+			<h2>Descripcion:</h2>
+			<p>go_top.js es un plugin sencillo, su función consiste en mostrar un botón para regresar al inicio de la pagina,
+				este se muestra cuando el usuario ha hecho escroll cierta distancia vertical al incio de la página.<br><br>
+				<a href="go_top.rar" class="btn">Descargar plugin</a>
+			</p>			
+			<h2>Como usarlo:</h2>
+			<p>Llamar la libreria jQuery, luego al script go_top.js dentro del head o antes de cerrar la etiqueta body, asi:</p>
+			<div class="code">
+				<pre name="code" class="html">					
+						<script type="text/javascript" src="js/jquery.js"></script>		
+						<script type="text/javascript" src="js/go_top.js"></script>					
+				</pre>				
+			</div>
+			<p>El plugin se aplica a la etiqueta '&lt;a&gt;', este elemento tine
+				 que estar dentro de las etiquetas de body, en cualquier lugar de este:</p>
+			<div class="code">
+				<pre name="code" class="html">
+						<!-- dentro del body -->
+						
+						<!-- elemento que servira como boton para ir al incio de la página -->
+						<a href="#" id="irArriba"></a>	
+						
+				</pre>				
+			</div>			
+			<p>
+				El plugin hace todo por nosoros, pero se necesita de dos imagenes "up1.png" y "up2.png" para mostrar el boton hacia arriba,
+				dichas imagenes tienen que estar dentro de un directorio llamado "imgs" en la raiz del proyecto asi -> "imgs/".<br>
+				Para utilizar el plugin simplemente se hace de la siguiente forma:
+			</p>
+			
+			<div class="code">
+				<pre name="code" class="js">
+						$(document).ready(function(){
+							$("#irArriba").go_top();
+						});
+						
+				</pre>				
+			</div>
+			
+			<h2>Parametros:</h2>
+			<p>La llamada al plugin se hace con "$('elemento').go_top()", la forma más simple de usarlo es sin parametros, pero
+				la función admite parametros opcionales los cuales son:
+				<ul>
+					<li>
+						<strong>top: </strong>Posición vertical que sobrepasa el tamaño normal de la ventana, al llegar a esta posición
+						se debe mostrar el boton para ir al inicio de la pagina, por defecto es 200.
+					</li>
+					<li>
+						<strong>in: </strong>Tiempo (en milisegundos) que tardara el efecto de aparecer el boton para ir hacia arriba,
+						por defecto es 200 milisegundos.
+					</li>
+					<li>
+						<strong>out: </strong>Tiempo (en milisegundos) que tardara el efecto de desaparecer el boton de ir hacia arriba, 
+						por defecto es 200 milisegundos.
+					</li>
+					<li>
+						<strong>duration: </strong>Tiempo que durara la animación de hacer scroll hacia el inicio de la página, 
+						por defecto es 400.
+					</li>
+				</ul>				
+			</p>
+			<div class="code">
+				<pre name="code" class="js">
+					//pasado un mapa de parametros a la funcion .go_top()
+						$(document).ready(function(){
+							$("#irArriba").go_top({
+								"top":100,
+								"in":100,
+								"out":100,
+								"duration":100
+							});	
+						});
+						
+				</pre>				
+			</div>
+			
+			<h2>Codigo fuente del plugin:</h2>			
+			<div class="code">
+				<pre name="code" class="js">
+					jQuery.fn.go_top = function(params){
+						//parametros por defecto
+						var defaults = {
+							//pocicion en la que se debe mostrar el boton ir hacia arriba
+							"top":200,	
+							//tiempo en que tarda en aparecer el boton
+							"in":200,
+							//tiempo que tarda en desaparecer el boton
+							"out":200,
+							//tiempo que dura la animacion en ir hacia el inicio de la página
+							"duration":400,		
+						};
+					
+						var options = jQuery.extend(defaults, params);
+						var go_top = $(this);
+						//estilos 
+						go_top.css({
+							"position":"fixed",
+							"bottom":"1em",
+							"right":"1em",		
+							"width":"50px",
+							"height":"50px",
+							"text-decoration":"none",
+							"color":"#FFF",
+							"background":"url('imgs/up1.png') no-repeat",
+							"background-size":"contain",
+							"display":"none"
+						});
+						//estilos para el evento hover del elemento
+						go_top.hover(function(){
+							$(this).css({
+								"background":"url('imgs/up2.png') no-repeat",
+								"background-size":"contain"
+							});		
+						},function(){
+							$(this).css({
+								"background":"url('imgs/up1.png') no-repeat",
+								"background-size":"contain"
+							});
+						});
+						
+						//determinando la pocición actual del scroll	
+						$(window).scroll(function() {
+							if ($(this).scrollTop() > options.top) {
+								go_top.fadeIn(options.in);
+							} else {
+								go_top.fadeOut(options.out);
+							}
+						});
+			
+						// Animar el scroll hacia arriba
+						go_top.click(function(event) {
+							event.preventDefault();				
+							$('html, body').animate({scrollTop: 0}, options.duration);
+						})
+					};	
+									
+				</pre>				
+			</div>
+		</div>
+		<footer>		
+			<div class="copy">
+				<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.es_ES">
+					<img alt="Licencia de Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" />
+				</a>
+				<br />
+				Este obra está bajo una 
+				<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.es_ES">
+					licencia de Creative Commons Reconocimiento-NoComercial-CompartirIgual 3.0 Unported
+				</a>.	
+			</div>
+		</footer>  
+		 <a href="#" title="Go top" id="goTop"></a>
+	</body>
+</html>
